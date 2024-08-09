@@ -1,19 +1,14 @@
 class Wcurl < Formula
   desc "Wrapper around curl to easily download files"
-  homepage "https://samueloph.dev/blog/announcing-wcurl-a-curl-wrapper-to-download-files/"
-  url "https://salsa.debian.org/debian/wcurl/-/archive/2024-07-07/wcurl-2024-07-07.tar.gz"
-  sha256 "5ee1d686aeef4353cb023be341f4b34401d8c6f55039cdda5d52d47cf8db4932"
+  homepage "https://github.com/curl/wcurl"
+  url "https://github.com/curl/wcurl/archive/refs/tags/2024.07.10.tar.gz"
+  sha256 "962bb72e36e6f6cedbd21c8ca3af50e7dadd587a49d2482ab3226e76cf6dcc97"
   license "curl"
-  head "https://salsa.debian.org/debian/wcurl.git", branch: "main"
+  head "https://github.com/curl/wcurl.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "5c65bb98d00279bedfb286a2fd324c139e4ddf20c97382418e86db25b2cefcf1"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "5c65bb98d00279bedfb286a2fd324c139e4ddf20c97382418e86db25b2cefcf1"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "5c65bb98d00279bedfb286a2fd324c139e4ddf20c97382418e86db25b2cefcf1"
-    sha256 cellar: :any_skip_relocation, sonoma:         "5c65bb98d00279bedfb286a2fd324c139e4ddf20c97382418e86db25b2cefcf1"
-    sha256 cellar: :any_skip_relocation, ventura:        "5c65bb98d00279bedfb286a2fd324c139e4ddf20c97382418e86db25b2cefcf1"
-    sha256 cellar: :any_skip_relocation, monterey:       "5c65bb98d00279bedfb286a2fd324c139e4ddf20c97382418e86db25b2cefcf1"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "736e2648b6fcb39fea97a85c7eecfebd834e029421bf454e4d5f380785e8357d"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, all: "af8adb8368a8844d3552b6b6efed89c10d4bb6b03220dab7bdc73b658422e04b"
   end
 
   depends_on "curl"
@@ -27,7 +22,7 @@ class Wcurl < Formula
   test do
     assert_match version.to_s, shell_output(bin/"wcurl --version")
 
-    system bin/"wcurl", "https://salsa.debian.org/debian/wcurl/-/raw/main/wcurl.1"
+    system bin/"wcurl", "https://github.com/curl/wcurl/blob/main/wcurl.1"
     assert_predicate testpath/"wcurl.1", :exist?
   end
 end

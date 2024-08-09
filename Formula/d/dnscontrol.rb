@@ -1,8 +1,8 @@
 class Dnscontrol < Formula
   desc "Synchronize your DNS to multiple providers from a simple DSL"
   homepage "https://dnscontrol.org/"
-  url "https://github.com/StackExchange/dnscontrol/archive/refs/tags/v4.12.3.tar.gz"
-  sha256 "88696f622e614d687caaa592144a57e32cdb6e36712cf4a57a71860cb5ec45cb"
+  url "https://github.com/StackExchange/dnscontrol/archive/refs/tags/v4.12.5.tar.gz"
+  sha256 "c4c4bec6f49f48deee3cb7f611f3ebd42ff1ccabd35d856ab694bdd6e07b7203"
   license "MIT"
   version_scheme 1
 
@@ -15,13 +15,13 @@ class Dnscontrol < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "08a7b62266cbeac63cf034a437440a0be7784e60ca1ef70c4f359593e36bfd8a"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "6ff984910af6bebe8e871d363407417d19a2fd794b07d4a717deb12978c528cf"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "8d9050d11690d9c7e1989690320fc3f57c562b54e210da25b431f6f72452a857"
-    sha256 cellar: :any_skip_relocation, sonoma:         "32c113a373c66e2a0259502d262a7ef1f8e6d01208da0b0c3803fd8e27440ea9"
-    sha256 cellar: :any_skip_relocation, ventura:        "1c8d28a52b5d4e5e52e33e52250b0cd6d5f17b1969774b6888260d888cac5815"
-    sha256 cellar: :any_skip_relocation, monterey:       "eb96eebcdad1f85ffdfaef9f4dda3c9b3055f7fc0df2a725e38f17031d1de53c"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "c4a72126beba7f33c303c35e6f901c29bec0710dfe97a85d146fe1aab285995f"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "5add366f87f58f5a28d4ffb7474ded6e04a0909850f9041e25d21b216b1a1d50"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "3c48997e25a871409e5c4641717dba5af4624217a68e5c808fe3f93e487b8016"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "de044a5e5a7f302e763fe74c051f309747b918bce0e0867474501e0853b0195c"
+    sha256 cellar: :any_skip_relocation, sonoma:         "89be23661b077bf7261d0cf1a21881c540360083d10aae8e4e5b7439e01cacea"
+    sha256 cellar: :any_skip_relocation, ventura:        "06ceb16590b455534a74f6cf8f49a771a9bbce202865e23f3a354c8c2901b7dd"
+    sha256 cellar: :any_skip_relocation, monterey:       "2d2577e2c3bd71e6f7da1ce4b7765dbe74e3082228cd0720a2dd273a64426518"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "ea1c50d03707b9b4318adb8ed17989fc4607b0cd95b7230219fed391cf54c796"
   end
 
   depends_on "go" => :build
@@ -53,9 +53,6 @@ class Dnscontrol < Formula
     EOS
 
     output = shell_output("#{bin}/dnscontrol check #{testpath}/dnsconfig.js 2>&1").strip
-    assert_equal <<~EOS.strip, output
-      DOMAIN: 4 example.com
-      No errors.
-    EOS
+    assert_equal "No errors.", output
   end
 end
