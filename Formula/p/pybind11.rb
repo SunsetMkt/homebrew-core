@@ -1,9 +1,10 @@
 class Pybind11 < Formula
   desc "Seamless operability between C++11 and Python"
   homepage "https://github.com/pybind/pybind11"
-  url "https://github.com/pybind/pybind11/archive/refs/tags/v2.13.5.tar.gz"
-  sha256 "b1e209c42b3a9ed74da3e0b25a4f4cd478d89d5efbb48f04b277df427faf6252"
+  url "https://github.com/pybind/pybind11/archive/refs/tags/v2.13.6.tar.gz"
+  sha256 "e08cb87f4773da97fa7b5f035de8763abc656d87d5773e62f6da0587d1f0ec20"
   license "BSD-3-Clause"
+  revision 1
 
   livecheck do
     url :stable
@@ -11,14 +12,14 @@ class Pybind11 < Formula
   end
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, all: "60413ac82c90391d1ec75248efe6b31155fd1109590a92417d4df78d78cc4729"
+    sha256 cellar: :any_skip_relocation, all: "d1ac19b7042b5f6b94bff8f1766307bfee68335ecb4dc7423040ae89940173bf"
   end
 
   depends_on "cmake" => :build
   depends_on "python-setuptools" => :build
   depends_on "python@3.11" => [:build, :test]
   depends_on "python@3.12" => [:build, :test]
+  depends_on "python@3.13" => [:build, :test]
 
   def pythons
     deps.map(&:to_formula)

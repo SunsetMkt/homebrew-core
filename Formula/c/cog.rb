@@ -1,18 +1,19 @@
 class Cog < Formula
   desc "Containers for machine learning"
   homepage "https://cog.run/"
-  url "https://github.com/replicate/cog/archive/refs/tags/v0.9.22.tar.gz"
-  sha256 "021989f2b2571b3dc90d76de0ea28bef56cb48ed1514e0c2403376e586c0db12"
+  url "https://github.com/replicate/cog/archive/refs/tags/v0.9.26.tar.gz"
+  sha256 "46ae16f928c8591622c8c61c44bce029a9a5202b5d65609ce505686d935f4e08"
   license "Apache-2.0"
   head "https://github.com/replicate/cog.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "aa4d239a2c42357d3b9c127819f45831069cf129ba7983e011289c2c68a05ecb"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "aa4d239a2c42357d3b9c127819f45831069cf129ba7983e011289c2c68a05ecb"
-    sha256 cellar: :any_skip_relocation, arm64_ventura: "aa4d239a2c42357d3b9c127819f45831069cf129ba7983e011289c2c68a05ecb"
-    sha256 cellar: :any_skip_relocation, sonoma:        "618face0091632fd9e2d4f27f851bdf626dd3d8a678ac121b51f023294d3332d"
-    sha256 cellar: :any_skip_relocation, ventura:       "618face0091632fd9e2d4f27f851bdf626dd3d8a678ac121b51f023294d3332d"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "80b9e6ff100bc5fec6f46dea9f85987c6b0094345019269439644e2df02c863e"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "a1390df0181cb0ef8b0242b1dcfaac6d4664f048cbab4ed152958da80fddac13"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "a1390df0181cb0ef8b0242b1dcfaac6d4664f048cbab4ed152958da80fddac13"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "a1390df0181cb0ef8b0242b1dcfaac6d4664f048cbab4ed152958da80fddac13"
+    sha256 cellar: :any_skip_relocation, sonoma:        "c9efc2498a44d8a592ee387cd61dba64a61921bbee0c35f80515007376509cf1"
+    sha256 cellar: :any_skip_relocation, ventura:       "c9efc2498a44d8a592ee387cd61dba64a61921bbee0c35f80515007376509cf1"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "fd585b656aba69ff06f0747eecd4cbe9967627ffc20de4d0838cd0c53d008ea5"
   end
 
   depends_on "go" => :build
@@ -26,7 +27,7 @@ class Cog < Formula
     # Prevent Makefile from running `pip install build` by manually creating wheel.
     # Otherwise it can end up installing binary wheels.
     system python3, "-m", "pip", "wheel", "--verbose", "--no-deps", "--no-binary=:all:", "."
-    (buildpath/"pkg/dockerfile/embed").install buildpath.glob("cog-*.whl").first => "cog.whl"
+    (buildpath/"pkg/dockerfile/embed").install buildpath.glob("cog-*.whl").first
 
     ldflags = %W[
       -s -w

@@ -4,7 +4,7 @@ class MysqlAT80 < Formula
   url "https://cdn.mysql.com/Downloads/MySQL-8.0/mysql-boost-8.0.39.tar.gz"
   sha256 "93208da9814116d81a384eae42120fd6c2ed507f1696064c510bc36047050241"
   license "GPL-2.0-only" => { with: "Universal-FOSS-exception-1.0" }
-  revision 2
+  revision 5
 
   livecheck do
     url "https://dev.mysql.com/downloads/mysql/8.0.html?tpl=files&os=src&version=8.0"
@@ -12,14 +12,12 @@ class MysqlAT80 < Formula
   end
 
   bottle do
-    sha256 arm64_sequoia:  "e80f865a8536ac9f2fb791b8276a81d00b5801193a67192edc8142c8e2cf3382"
-    sha256 arm64_sonoma:   "026808ac76aa2cab58df995a2c83e14c6ec62a8d37c38993fc34181a843e0d39"
-    sha256 arm64_ventura:  "4bf538f6ed115ac7b97cc3cfdef2595f26371d3269060108f6c09165f10ac37f"
-    sha256 arm64_monterey: "68a3417ebe9bb80e98e93d69404e5b6564be7f560113b0b14deb6b209368696f"
-    sha256 sonoma:         "927301df45e2b839d4a4e878fd304c27687e55b41fe48dafd5f19746ccef1e21"
-    sha256 ventura:        "9c88deedf08f309aba6e2c4bc3230949efb7532557869108e4bdf86bcca72de6"
-    sha256 monterey:       "cf0fe15d133b7d611e9dec8fcc515043b6f160ea6359ba9536184bbfae9fe6e7"
-    sha256 x86_64_linux:   "7827eb7c879814b76dee38999f39717bb26ef959600a1631a528a2ca9359fefb"
+    sha256 arm64_sequoia: "7a06d65aebf698355e3d8cd7c73c6b92ed1b66e5804e348c388417871acbe1ca"
+    sha256 arm64_sonoma:  "6ac5450c0aa7d5c9cfe8544b374e7c316e79e14f80955f16bb20a91f5ffca24e"
+    sha256 arm64_ventura: "cb974fda24352d19376a8c5ffa7bb40e11aaa6ee84a55eab1f96d12e5d805105"
+    sha256 sonoma:        "2ca58d2ff461e876c619170e4bacec20217fbbc91b235c20d3bbb479826e4d2e"
+    sha256 ventura:       "035cce88cbbb5602766b4f2f3713479e2717fc2df2ad85b54488fbaec0407973"
+    sha256 x86_64_linux:  "2bd974bcced3fe67c8e823c153ef88b2c1edc0394e5fae7b1d886db226258144"
   end
 
   keg_only :versioned_formula
@@ -28,7 +26,7 @@ class MysqlAT80 < Formula
   depends_on "cmake" => :build
   depends_on "pkg-config" => :build
   depends_on "abseil"
-  depends_on "icu4c"
+  depends_on "icu4c@75"
   depends_on "libevent"
   depends_on "libfido2"
   depends_on "lz4"
@@ -62,11 +60,6 @@ class MysqlAT80 < Formula
 
   def install
     if OS.linux?
-      # Fix libmysqlgcs.a(gcs_logging.cc.o): relocation R_X86_64_32
-      # against `_ZN17Gcs_debug_options12m_debug_noneB5cxx11E' can not be used when making
-      # a shared object; recompile with -fPIC
-      ENV.append_to_cflags "-fPIC"
-
       # Disable ABI checking
       inreplace "cmake/abi_check.cmake", "RUN_ABI_CHECK 1", "RUN_ABI_CHECK 0"
 
@@ -79,6 +72,7 @@ class MysqlAT80 < Formula
       end
     end
 
+    icu4c = deps.map(&:to_formula).find { |f| f.name.match?(/^icu4c@\d+$/) }
     # -DINSTALL_* are relative to `CMAKE_INSTALL_PREFIX` (`prefix`)
     args = %W[
       -DCOMPILATION_COMMENT=Homebrew
@@ -90,11 +84,13 @@ class MysqlAT80 < Formula
       -DINSTALL_PLUGINDIR=lib/plugin
       -DMYSQL_DATADIR=#{datadir}
       -DSYSCONFDIR=#{etc}
+      -DBISON_EXECUTABLE=#{Formula["bison"].opt_bin}/bison
+      -DOPENSSL_ROOT_DIR=#{Formula["openssl@3"].opt_prefix}
+      -DWITH_ICU=#{icu4c.opt_prefix}
       -DWITH_SYSTEM_LIBS=ON
       -DWITH_BOOST=boost
       -DWITH_EDITLINE=system
       -DWITH_FIDO=system
-      -DWITH_ICU=system
       -DWITH_LIBEVENT=system
       -DWITH_LZ4=system
       -DWITH_PROTOBUF=system

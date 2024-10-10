@@ -4,7 +4,7 @@ class Mysql < Formula
   url "https://cdn.mysql.com/Downloads/MySQL-9.0/mysql-9.0.1.tar.gz"
   sha256 "18fa65f1ea6aea71e418fe0548552d9a28de68e2b8bc3ba9536599eb459a6606"
   license "GPL-2.0-only" => { with: "Universal-FOSS-exception-1.0" }
-  revision 1
+  revision 4
 
   livecheck do
     url "https://dev.mysql.com/downloads/mysql/?tpl=files&os=src"
@@ -12,21 +12,19 @@ class Mysql < Formula
   end
 
   bottle do
-    sha256 arm64_sequoia:  "9fca608694869f9ecdb43e8ebc5d72e3d52f47f4a801f64c28c11e5ed64dcbd4"
-    sha256 arm64_sonoma:   "9fb3bd842d0bc3accdeb6dc5e111711d7c15e083eb5e5fd857a41d420bad45f5"
-    sha256 arm64_ventura:  "b9cb0018e37b4f8aaeacf9a488eeeedc57d8b7b5ee13d5f23c7b72a39b838fad"
-    sha256 arm64_monterey: "47e6ac4b825b72312f888d1af96948095aac5dbda808c48aa0085da73b5f54f2"
-    sha256 sonoma:         "70c019fe1b2530029d1576a54a20e9f388689df173d67e878371c59b72316135"
-    sha256 ventura:        "4ddacec688dfe9beedf7492c19fa0dc763cf72cd54639f6fba7708ae9d08f52a"
-    sha256 monterey:       "8f4f5d6ae89e208263fdc2f78158fc3537f51186bae91dbe5ce5fbfb22da27ca"
-    sha256 x86_64_linux:   "5bed579de1113ca5b722064b7a60f63d690e1d758cfb494b98105f0c97d732cb"
+    sha256 arm64_sequoia: "16dd296951c11dd0c603b0fdb10ae2a3be136abcd5badf97c5e6102178550b1f"
+    sha256 arm64_sonoma:  "c3b543fbe170198e59a25548b8e4f616c2b029b1ea53dc07e9eb3c6a9897a37c"
+    sha256 arm64_ventura: "58fd92a9ba6c8ec16e9962d850fd3995982275ee337cc0a2b845dbf93124aab6"
+    sha256 sonoma:        "15d27df2b4f2061f29b1250603bccd5b6e8fb5940517364a3d09a78974b77761"
+    sha256 ventura:       "442a458937a726755d13c170621b8e1c9694608cc9f140e71db10eb96da15f42"
+    sha256 x86_64_linux:  "522984610cd481928f33d0b3383306538c72231583b3dadcab2f8058848c1384"
   end
 
   depends_on "bison" => :build
   depends_on "cmake" => :build
   depends_on "pkg-config" => :build
   depends_on "abseil"
-  depends_on "icu4c"
+  depends_on "icu4c@75"
   depends_on "lz4"
   depends_on "openssl@3"
   depends_on "protobuf"
@@ -57,6 +55,11 @@ class Mysql < Formula
     version "9"
     cause "Requires C++20"
   end
+
+  # Patch out check for Homebrew `boost`.
+  # This should not be necessary when building inside `brew`.
+  # https://github.com/Homebrew/homebrew-test-bot/pull/820
+  patch :DATA
 
   def datadir
     var/"mysql"
@@ -89,6 +92,7 @@ class Mysql < Formula
       ENV.prepend_path "HOMEBREW_LIBRARY_PATHS", Formula["llvm"].opt_lib/"c++"
     end
 
+    icu4c = deps.map(&:to_formula).find { |f| f.name.match?(/^icu4c@\d+$/) }
     # -DINSTALL_* are relative to `CMAKE_INSTALL_PREFIX` (`prefix`)
     # -DWITH_FIDO=system isn't set as feature isn't enabled and bundled copy was removed.
     # Formula paths are set to avoid HOMEBREW_HOME logic in CMake scripts
@@ -104,7 +108,7 @@ class Mysql < Formula
       -DSYSCONFDIR=#{etc}
       -DBISON_EXECUTABLE=#{Formula["bison"].opt_bin}/bison
       -DOPENSSL_ROOT_DIR=#{Formula["openssl@3"].opt_prefix}
-      -DWITH_ICU=#{Formula["icu4c"].opt_prefix}
+      -DWITH_ICU=#{icu4c.opt_prefix}
       -DWITH_SYSTEM_LIBS=ON
       -DWITH_BOOST=boost
       -DWITH_EDITLINE=system
@@ -212,3 +216,41 @@ class Mysql < Formula
     end
   end
 end
+
+__END__
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 438dff720c5..47863c17e23 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1948,31 +1948,6 @@ MYSQL_CHECK_RAPIDJSON()
+ MYSQL_CHECK_FIDO()
+ MYSQL_CHECK_FIDO_DLLS()
+
+-IF(APPLE)
+-  GET_FILENAME_COMPONENT(HOMEBREW_BASE ${HOMEBREW_HOME} DIRECTORY)
+-  IF(EXISTS ${HOMEBREW_BASE}/include/boost)
+-    FOREACH(SYSTEM_LIB ICU LZ4 PROTOBUF ZSTD FIDO)
+-      IF(WITH_${SYSTEM_LIB} STREQUAL "system")
+-        MESSAGE(FATAL_ERROR
+-          "WITH_${SYSTEM_LIB}=system is not compatible with Homebrew boost\n"
+-          "MySQL depends on ${BOOST_PACKAGE_NAME} with a set of patches.\n"
+-          "Including headers from ${HOMEBREW_BASE}/include "
+-          "will break the build.\n"
+-          "Please use WITH_${SYSTEM_LIB}=bundled\n"
+-          "or do 'brew uninstall boost' or 'brew unlink boost'"
+-          )
+-      ENDIF()
+-    ENDFOREACH()
+-  ENDIF()
+-  # Ensure that we look in /usr/local/include or /opt/homebrew/include
+-  FOREACH(SYSTEM_LIB ICU LZ4 PROTOBUF ZSTD FIDO)
+-    IF(WITH_${SYSTEM_LIB} STREQUAL "system")
+-      INCLUDE_DIRECTORIES(SYSTEM ${HOMEBREW_BASE}/include)
+-      BREAK()
+-    ENDIF()
+-  ENDFOREACH()
+-ENDIF()
+-
+ IF(WITH_AUTHENTICATION_WEBAUTHN OR
+   WITH_AUTHENTICATION_CLIENT_PLUGINS)
+   IF(WITH_FIDO STREQUAL "system" AND

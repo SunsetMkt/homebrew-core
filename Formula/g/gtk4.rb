@@ -1,8 +1,8 @@
 class Gtk4 < Formula
   desc "Toolkit for creating graphical user interfaces"
   homepage "https://gtk.org/"
-  url "https://download.gnome.org/sources/gtk/4.16/gtk-4.16.0.tar.xz"
-  sha256 "8ef538778c82c09870a6cc325195049caec5593c1ca37df915a7b6b10f5524ea"
+  url "https://download.gnome.org/sources/gtk/4.16/gtk-4.16.3.tar.xz"
+  sha256 "2ec53e07d18c9f003b39e4a6a838054d9259e048b6c4c05d80c0d05aa721d944"
   license "LGPL-2.1-or-later"
 
   livecheck do
@@ -11,14 +11,12 @@ class Gtk4 < Formula
   end
 
   bottle do
-    sha256 arm64_sequoia:  "ba7061ea047cd4baed516b47ef21ebaf53292f9901d87e870ea72247cc8d60c3"
-    sha256 arm64_sonoma:   "c823e9fe6efc72166f0927e0dcdc628a65b8c3986aa63b668536dd2ac9282456"
-    sha256 arm64_ventura:  "9a048708226b36b10bb3608c26a37e915679493c257f52dafcf2d38a834a9c72"
-    sha256 arm64_monterey: "e1bac1236436a47529458292a0953b57ef7caeacf7ef180857f17af9fad893a8"
-    sha256 sonoma:         "f03c1dd6b1b4bd1057936e808d1fc53d7deedcd83f1710cbf18f43e0b38c4af5"
-    sha256 ventura:        "75808d59eda8d0f2dbaead7d6c9e086e7905cf740d44be7ca8216cb766ef4123"
-    sha256 monterey:       "614e6df4e8eb19b5a151a03063d98e4938a34869f492b1aaef203371333bf149"
-    sha256 x86_64_linux:   "f9c8d6cb9921ef899a2e2facf1692a3858925258622a4c637355176021b7abd3"
+    sha256 arm64_sequoia: "e0aff4fa117f64210693f8d3cbe3f8ed7a7fb63870bbb2278b4ed6f431996d2f"
+    sha256 arm64_sonoma:  "b720a909d5893948a165083a546fed3239e33d522647a072f9f5875ee29d59ba"
+    sha256 arm64_ventura: "dc7c3c7e9d4b8b268f5b51f8c38ecb064f47568c262e0b7ee41528cf9c84b3d3"
+    sha256 sonoma:        "d0f53e0f9940d36ef38b99c1059f696fafa4df150ff7d58d1e7da238f5fcb4f1"
+    sha256 ventura:       "9de9dbbf42814d0adca92883b6b38b13d6a5d5a71047657ce2e1daa8b2b056e5"
+    sha256 x86_64_linux:  "320d3fe79f0902414ee4d5c8133e493d1f4ef4be02faca56056716ea24bb1448"
   end
 
   depends_on "docbook" => :build

@@ -4,17 +4,16 @@ class ProtocGenJs < Formula
   url "https://github.com/protocolbuffers/protobuf-javascript/archive/refs/tags/v3.21.4.tar.gz"
   sha256 "8cef92b4c803429af0c11c4090a76b6a931f82d21e0830760a17f9c6cb358150"
   license "BSD-3-Clause"
+  revision 2
   head "https://github.com/protocolbuffers/protobuf-javascript.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia:  "f21923ab80eb5c121c685572910d3c3a3e5ec3e4785948ef465e111a051c2118"
-    sha256 cellar: :any,                 arm64_sonoma:   "e88d8c9da16d90a087cc06fd673be15d0e0fbb994db142aace7f7d60b47ab98f"
-    sha256 cellar: :any,                 arm64_ventura:  "e9eb75b369a9299861a58c79ab2be463859c715492d09ae74d762e7bd255c8c1"
-    sha256 cellar: :any,                 arm64_monterey: "fd3b137f6fb2a3ef81352949a399c8a3674f04331903f054732fa13740e3a2d3"
-    sha256 cellar: :any,                 sonoma:         "8d3e2bc657967f30ea03409f6942fc9f6e1c4297a36266dc82872bc9b20d1299"
-    sha256 cellar: :any,                 ventura:        "76a813a7c9228db8c43d7860ffe1ba0c421aaf0c5e5932a65579e78a57e61c14"
-    sha256 cellar: :any,                 monterey:       "c381ff81bee4bc885a5f94d3369cb2ae94ed2edba0309ffbd34f0725cf2c94e6"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "4cf5bc2842890a2fa165808f0ccd944f952f42a1d18573def7c21d7516dadf71"
+    sha256 cellar: :any,                 arm64_sequoia: "77c2c092386684372d8a228e5a1b107b008898117104feef491b6283bd1dd25c"
+    sha256 cellar: :any,                 arm64_sonoma:  "7544980adc91f9214cd364b48e180afa3a51573bdaff74f434a0b145989d0d6f"
+    sha256 cellar: :any,                 arm64_ventura: "2f2c45a57da4ec466bd629fe83163e46deaba79e9534ac60957594ce675dd979"
+    sha256 cellar: :any,                 sonoma:        "255f728321c7def862a5162bd92c41ca96bb0168e852d102a3a79288a7c73ca8"
+    sha256 cellar: :any,                 ventura:       "447d1c305f96d8c8780b8a692031a71bb1380336d521f41ed70d0a9ef1ff32c9"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "4db9d43324d19e7286a18a995f09a7f05edd90d53537839bee5b1c602568c2f3"
   end
 
   depends_on "pkg-config" => :build

@@ -4,7 +4,7 @@ class ProtocGenGrpcWeb < Formula
   url "https://github.com/grpc/grpc-web/archive/refs/tags/1.5.0.tar.gz"
   sha256 "d3043633f1c284288e98e44c802860ca7203c7376b89572b5f5a9e376c2392d5"
   license "Apache-2.0"
-  revision 1
+  revision 3
 
   livecheck do
     url :stable
@@ -12,14 +12,12 @@ class ProtocGenGrpcWeb < Formula
   end
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia:  "a1380447c6c7998f1346501536727e5806611c4892671851c100ef7f242a8ce1"
-    sha256 cellar: :any,                 arm64_sonoma:   "f75cc8466c6773885059bd615d775c917a64388d3208e18e99fc745857efb271"
-    sha256 cellar: :any,                 arm64_ventura:  "8b7d340837605b8088c123067a58d0548dec600ce53d63ff1cd65c3f7d050b61"
-    sha256 cellar: :any,                 arm64_monterey: "6d95c1d15884fdeb7fff0765a9cc927f4ee29533671f4ad64c284600ae59604b"
-    sha256 cellar: :any,                 sonoma:         "03a722484f5c9851b7943e8ee73489150a3d5c7a2647aab541ef5a13b271db59"
-    sha256 cellar: :any,                 ventura:        "7171ba31b7089bca1a6b81ebb536eddc8a951bae4363f1d220f0237278630d58"
-    sha256 cellar: :any,                 monterey:       "6faa85430a15cb6ea6619a1d90bc0a8965a619d1041f86e58c3930395b36c200"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "badb7f248c73143316ed40614abf5717d3ca676f152fb6461da630a0fb72368d"
+    sha256 cellar: :any,                 arm64_sequoia: "4e1817a688e9f5ec74def593de16f5655845e61b85ece1c4ce9ab0d2e9625bd1"
+    sha256 cellar: :any,                 arm64_sonoma:  "aa3189a141759be26f4597954940bc2122576e27ccf49d4734058f17ba5a8a6b"
+    sha256 cellar: :any,                 arm64_ventura: "b0ce3cd04dd533f588a6298639fdc92492ffe5a18749207365601136fa7a67e7"
+    sha256 cellar: :any,                 sonoma:        "bae88a04ee0a095e4f402518720cbd033ace4e9c9ecb7457568f8f5957847dcf"
+    sha256 cellar: :any,                 ventura:       "a767adc91038143a612954550756fc1c84e4204616a79694f811f9f6e8f4f641"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "90049dafe5518ec2987a4dfb3d1019cc95aa5c4746314ebd746d3cadd2f4840e"
   end
 
   depends_on "cmake" => :build

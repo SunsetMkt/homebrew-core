@@ -4,18 +4,15 @@ class ProtobufC < Formula
   url "https://github.com/protobuf-c/protobuf-c/releases/download/v1.5.0/protobuf-c-1.5.0.tar.gz"
   sha256 "7b404c63361ed35b3667aec75cc37b54298d56dd2bcf369de3373212cc06fd98"
   license "BSD-2-Clause"
-  revision 9
+  revision 11
 
   bottle do
-    rebuild 1
-    sha256 cellar: :any,                 arm64_sequoia:  "4a9f3feb96ee3c7670b22d2a4f51813ccf3cf8f920ba6dba1633d3b009b35a37"
-    sha256 cellar: :any,                 arm64_sonoma:   "49636dfd5df7def8576af5928bf8645797afe189b08fc8cbe354e13d3f118f6f"
-    sha256 cellar: :any,                 arm64_ventura:  "990e2c5b4f749231c980ba344de3630bfed02f8ec1a882fc0b9da5e1214f36a2"
-    sha256 cellar: :any,                 arm64_monterey: "90a1f307a9985cdac770980f9c10ba02005ca83d79c8587f3ae704b10f758968"
-    sha256 cellar: :any,                 sonoma:         "ed5623554239e64dfe3fb7ef95588550ad677c17da437729e0a90f76ff8153eb"
-    sha256 cellar: :any,                 ventura:        "0176121e12c36bea25aed0d2f8fd2a353f587b0c05806008d30984f20db81767"
-    sha256 cellar: :any,                 monterey:       "b5f714ea31cf2f52e637b8c4566469e00a76f1f2d432abfa6250f0afaa8f0d1f"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "b53fab733fe9ce4e1620fb0d88f4e83964689b42fdaee7539551615090c4daaf"
+    sha256 cellar: :any,                 arm64_sequoia: "904d4a38259359584125cd475f570d2e8af6b0f9b18e4ea462dc78fc1c407a8d"
+    sha256 cellar: :any,                 arm64_sonoma:  "18e1db05a6041d908ba135a63d35b84773a652fa60dcfaa4b059b08660ea6067"
+    sha256 cellar: :any,                 arm64_ventura: "0e5cd82d7399ac39694c18ee938ebf842aae03ceca1a8b0988f10ead5426bb3b"
+    sha256 cellar: :any,                 sonoma:        "675017f43f47c1d80bebdc4e1cc70c380ee79446584f17ff9b942ae7ebaa4389"
+    sha256 cellar: :any,                 ventura:       "7d88260630f2b33fd996c1118244222d5cb49217ac6fb283f852eb0358369b92"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "8c9008f778cd4eac99c84d861c184be9f7a2b62ab5bcc382f7d9f49045e000bf"
   end
 
   head do

@@ -4,17 +4,15 @@ class Bloaty < Formula
   url "https://github.com/google/bloaty/releases/download/v1.1/bloaty-1.1.tar.bz2"
   sha256 "a308d8369d5812aba45982e55e7c3db2ea4780b7496a5455792fb3dcba9abd6f"
   license "Apache-2.0"
-  revision 29
+  revision 31
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia:  "5ece9c803b6a51a88b040f05fd9f9ecba504860be327aaae7f3fbca32ceac10d"
-    sha256 cellar: :any,                 arm64_sonoma:   "0760d9714260ab1b90f47f6aa4a650693668111b2453c8aae2a9f90f3f5ed7f5"
-    sha256 cellar: :any,                 arm64_ventura:  "90f8e8c37ec415bab07e5e181d040cd0ea6138953c1c2591cc02d156296cddc0"
-    sha256 cellar: :any,                 arm64_monterey: "35368f7f27988976ec100daef7a5c7384c47104d2d55f8abec91d2a91fd74c15"
-    sha256 cellar: :any,                 sonoma:         "9c2e304f0c4b2f7fb8f0837e71c270ab7c893a26af3b747ca79f73a548051bd6"
-    sha256 cellar: :any,                 ventura:        "486f6a457e96094666477fd053f81fbaa59b6c0aeef264568d32463b6b903374"
-    sha256 cellar: :any,                 monterey:       "c5e3176dfb63c50f271803dfa862e2df44f3ad581ce7e68237b4fe1044217c39"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "172d62668120f6fd2aa9993ecf96e18ecd4e6eb90865d52cfd966ed336779ad0"
+    sha256 cellar: :any,                 arm64_sequoia: "8e520bcf47723346213398840f54204bbdb653a36098c6e3914baad853f3c7d9"
+    sha256 cellar: :any,                 arm64_sonoma:  "74e520ed34f0fb12de1c72075b07b3a4c47ce93deab67b97fbcb5c5ab2972d87"
+    sha256 cellar: :any,                 arm64_ventura: "57f887b37907a95c82d9d8e26380d0787f6a6b272441ab8895dcc87521254c82"
+    sha256 cellar: :any,                 sonoma:        "59a926268747171e179dc9e7a5c807b09bdf90ab3d5b0d8983dd4fc4e7070a57"
+    sha256 cellar: :any,                 ventura:       "97d54acf39bfde90e558b6416721550cb752f5222f093100739d64fd25c10c1f"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "95b72acc5339745cb357f6d6d85c3f4c56bdd5746cb3fdbce1b77dc0eb03b7f0"
   end
 
   depends_on "cmake" => :build

@@ -1,20 +1,18 @@
 class Ox < Formula
   desc "Independent Rust text editor that runs in your terminal"
   homepage "https://github.com/curlpipe/ox"
-  url "https://github.com/curlpipe/ox/archive/refs/tags/0.4.6.tar.gz"
-  sha256 "ac4321f30fd7b5fbb9a4fc6e21242f7de739310c0ba36cc9a73f1791efa5ee22"
+  url "https://github.com/curlpipe/ox/archive/refs/tags/0.6.5.tar.gz"
+  sha256 "410dc77ea2fcb9e73b8cba5121c3cf41215d4cf8cd219015d5f8e0caea4e42d7"
   license "GPL-2.0-only"
   head "https://github.com/curlpipe/ox.git", branch: "master"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia:  "27c762b972339c18ac0b77d86130299ee18f3cfd70ad2b557ce8341debd09ca8"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "7a139c382cd22a128f22de230c285bfd8f2191412de762cb20bb0f7717707547"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "2322d27a12e8456a257d4fb8dd2956f1927ba83faf56474735cbc3337bffe6e8"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "813fd47412499ae6c64bb82a62eb92f87b7728d75af8e847917141b73fd85826"
-    sha256 cellar: :any_skip_relocation, sonoma:         "36ef0aed5469f91c3b4610f068a60b90ba3166b506ecda7b3a9fc661e19ed03a"
-    sha256 cellar: :any_skip_relocation, ventura:        "5f90e6fb795d78bae5ea5521e55ef9a598baffef937cf3cf18613a19da6d77ff"
-    sha256 cellar: :any_skip_relocation, monterey:       "b5a97a482ce4ed1815e6220cc8e2ee22344df059a3f72637eb8b21485e810db1"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "d7dd50e60b67e6b33c0d804bf308ac63922259ad744a6295719c5e936407945e"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "060c52a419887a5520583a00299fe172783007003dc3f9e4f206e67f7333b883"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "3e63eb5cdd11e15ea107d7060eb01cff1f2a829d73fdbbe4c197f3bfe770f5bd"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "ea147cd207bd3da17daf5b19398f91603774ef3199450166b4e1d67fa9a9e080"
+    sha256 cellar: :any_skip_relocation, sonoma:        "80b1b95c00b08011eea01cf0cd5546f799cc1ca48e9873bef2d44d34a42cf106"
+    sha256 cellar: :any_skip_relocation, ventura:       "09390d0c3f184fb08ff465948b4cf8290ec20fa71406ea7291a18b84951aa966"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "ec39a83e22f3e51f64487ec676d0badf67a03b813aa2da915583971b5901731e"
   end
 
   depends_on "rust" => :build

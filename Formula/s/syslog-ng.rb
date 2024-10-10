@@ -3,21 +3,19 @@ class SyslogNg < Formula
 
   desc "Log daemon with advanced processing pipeline and a wide range of I/O methods"
   homepage "https://www.syslog-ng.com"
-  url "https://github.com/syslog-ng/syslog-ng/releases/download/syslog-ng-4.8.0/syslog-ng-4.8.0.tar.gz"
-  sha256 "f2035546af5fcc0c03a8d03f5f0e929ce19131a428d611c982a5fea608a5d9d6"
+  url "https://github.com/syslog-ng/syslog-ng/releases/download/syslog-ng-4.8.1/syslog-ng-4.8.1.tar.gz"
+  sha256 "e8b8b98c60a5b68b25e3462c4104c35d05b975e6778d38d8a81b8ff7c0e64c5b"
   license all_of: ["LGPL-2.1-or-later", "GPL-2.0-or-later"]
-  revision 4
+  revision 1
   head "https://github.com/syslog-ng/syslog-ng.git", branch: "master"
 
   bottle do
-    sha256 arm64_sequoia:  "1394ec002610da755251c64330030f79594cf3b72a57d5e75f807deb42884f7b"
-    sha256 arm64_sonoma:   "a91ea6113031d8df1b24582a6cb942a74d7e5f2cefa5bd5225186bcb50dbceab"
-    sha256 arm64_ventura:  "54f6cb2b3004d7f830d1bd0b430c4d5e6d2d229ba0a663b3c09bf9f8b8265ab9"
-    sha256 arm64_monterey: "59d49dce7bb7fc738b91d66fa833bfb070953e5aa4f160681f21186cbdbdffb7"
-    sha256 sonoma:         "92272070a3c6dd46e24d20f285631bcb635defd03874df0907fd157d84ccac08"
-    sha256 ventura:        "55fcc9339cbeb143720e35b44f088415b9906dba2043844f5cfbb27bdac8db81"
-    sha256 monterey:       "8737e178e1cc4e4ce77e4ff009c0c5e8fb88f6875afb0a3ba1e87c22ea0e2b5a"
-    sha256 x86_64_linux:   "8ba85dea066c9e94adc9f8841afa1502ebb07e24cf628cc471ab269e9b02a620"
+    sha256 arm64_sequoia: "11ef05d36a4554236af227e6c5f108b4befb5bb16f185fbb3aa8abc95d05ed31"
+    sha256 arm64_sonoma:  "d97141b6e6a4750245c3d103487bf2d6d889f8b5f02c239a3f593f1cdde26f9e"
+    sha256 arm64_ventura: "bc12497c343cebc90da314604570387304412048e5238dc6186e53cce0a2be43"
+    sha256 sonoma:        "eb9d96201abe09f7cd81577e69e19039566375eab597ba3bb12cc2fd2a4d6d23"
+    sha256 ventura:       "afc75673d969f0a75cada92e5bcb65ccbbcbea705bf5f07b3eb1f257d288a8f8"
+    sha256 x86_64_linux:  "b19eb2694cb8f3b8a390c04107ec281ecbfab5d5b900dc5ca07c5dae4a212f03"
   end
 
   depends_on "pkg-config" => :build
@@ -49,9 +47,6 @@ class SyslogNg < Formula
   end
 
   def install
-    # In file included from /Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/usr/include/c++/v1/compare:157:
-    # ./version:1:1: error: expected unqualified-id
-    rm "VERSION"
     ENV["VERSION"] = version
 
     python3 = "python3.12"
@@ -67,7 +62,7 @@ class SyslogNg < Formula
                           "--disable-silent-rules",
                           "--enable-all-modules",
                           "--sysconfdir=#{pkgetc}",
-                          "--localstatedir=#{var}/#{name}",
+                          "--localstatedir=#{var/name}",
                           "--with-ivykis=system",
                           "--with-python=#{Language::Python.major_minor_version python3}",
                           "--with-python-venv-dir=#{venv.root}",

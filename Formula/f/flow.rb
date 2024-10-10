@@ -1,20 +1,18 @@
 class Flow < Formula
   desc "Static type checker for JavaScript"
   homepage "https://flow.org/"
-  url "https://github.com/facebook/flow/archive/refs/tags/v0.245.2.tar.gz"
-  sha256 "f6c034a271dc3feece4f072937485b87c67224565db02be014387ee933704d43"
+  url "https://github.com/facebook/flow/archive/refs/tags/v0.247.1.tar.gz"
+  sha256 "2874cd8f609cc2e1bd526d3e9b34cb493715c3eb612d1113e41440454561e85c"
   license "MIT"
   head "https://github.com/facebook/flow.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia:  "839625ba9904a99d95a51fd61dd3175072b7adf964a7308fdacb054e16e3dc4e"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "89a2551bf906c86865c16a46681e0c27c3118bce9dd6544ab4106b4ee4eba1e5"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "9572f20ec33f4c869603fc702b36e865444b8fbff22fc5d796cfe398f9e448a4"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "35b830434f56e12a18375a86eee4fcd34ace6f38283dae470066beaff6e57b00"
-    sha256 cellar: :any_skip_relocation, sonoma:         "24aec885443d8048388b9a784ec7af95b24f349327abf7687eccaea1d58cd3d3"
-    sha256 cellar: :any_skip_relocation, ventura:        "7ef86c442821add8d80f66fb6e089f477de8e88bc35c42409d4b3354a171d1c4"
-    sha256 cellar: :any_skip_relocation, monterey:       "f7ce9a8950519b66c24c9c7ed3af184280dde5fa7e8c7f1eeecf7f18d8b67ac7"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "d364ca6046ec347d617f571aa29751a6acae8effcb391d9529dd5a2329842dc4"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "e4dff5c4683ad71104cfe37f33d4f6992a79904ff9fe78f166f9accad667b406"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "cde190878a5a77f356c06d80599046d5333f0c1544011d6c29afce2f50cac7da"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "26c1b8e6101a52f8e91d83323f73efd0f715c2c04a0a218c8038558218ccbbe2"
+    sha256 cellar: :any_skip_relocation, sonoma:        "e5c49771640596d956640347aff6d90efebcf274f04406920b0dda4e1d26f490"
+    sha256 cellar: :any_skip_relocation, ventura:       "73629924cd981a09af9524a25e423fa0702b6dc700ca128ab43dd717c503d65e"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "75bb4229c88a3c2592094da86b044bd24b02039931422c703e2b8d2ff951d706"
   end
 
   depends_on "ocaml" => :build

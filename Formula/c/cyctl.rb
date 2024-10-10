@@ -1,20 +1,18 @@
 class Cyctl < Formula
   desc "Customizable UI for Kubernetes workloads"
   homepage "https://cyclops-ui.com/"
-  url "https://github.com/cyclops-ui/cyclops/archive/refs/tags/v0.11.0.tar.gz"
-  sha256 "0173bf858bde69b76dfaa264e3448c54250d541426234e860aee201fe933969b"
+  url "https://github.com/cyclops-ui/cyclops/archive/refs/tags/v0.14.0.tar.gz"
+  sha256 "0b8b5839b8f62654eeeab20a4b3937129922571079e25bfafc5c323b36e730cc"
   license "Apache-2.0"
   head "https://github.com/cyclops-ui/cyclops.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia:  "817373a7c8c7700fdeb7d5705eace1ba5b3ecb1d59687547df46c4f079f1117b"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "817373a7c8c7700fdeb7d5705eace1ba5b3ecb1d59687547df46c4f079f1117b"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "817373a7c8c7700fdeb7d5705eace1ba5b3ecb1d59687547df46c4f079f1117b"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "817373a7c8c7700fdeb7d5705eace1ba5b3ecb1d59687547df46c4f079f1117b"
-    sha256 cellar: :any_skip_relocation, sonoma:         "d2e269b85fbc00b64444bd4961e7b0bbff19061b060c073bcf299106167faebd"
-    sha256 cellar: :any_skip_relocation, ventura:        "d2e269b85fbc00b64444bd4961e7b0bbff19061b060c073bcf299106167faebd"
-    sha256 cellar: :any_skip_relocation, monterey:       "d2e269b85fbc00b64444bd4961e7b0bbff19061b060c073bcf299106167faebd"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "4c142dcac195c87dda0e4a2b878525916e4109e3f5537698128e21fdbbc0cb57"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "2199ca4031ea2acd6ad0cfa040787d26a79cc8eb84fe6f797a7b51914b14d701"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "2199ca4031ea2acd6ad0cfa040787d26a79cc8eb84fe6f797a7b51914b14d701"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "2199ca4031ea2acd6ad0cfa040787d26a79cc8eb84fe6f797a7b51914b14d701"
+    sha256 cellar: :any_skip_relocation, sonoma:        "9de37e04623e3c6614ea83bdb11b0e6f3905ed70f478beef46ba129981913f79"
+    sha256 cellar: :any_skip_relocation, ventura:       "9de37e04623e3c6614ea83bdb11b0e6f3905ed70f478beef46ba129981913f79"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "da9fc1aedf164075d7ec36c161a5b362740ce9633ae0309d2cb2441dfbf7bdcf"
   end
 
   depends_on "go" => :build

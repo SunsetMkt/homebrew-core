@@ -3,19 +3,17 @@ class Tmt < Formula
 
   desc "Test Management Tool"
   homepage "https://tmt.readthedocs.io"
-  url "https://files.pythonhosted.org/packages/b4/eb/a24a6001662d4a35c13f6385effee2a19620d7b8906082f6078956fc5545/tmt-1.36.0.tar.gz"
-  sha256 "e13eda47be579e0423d806fac7d28359d6a9dcf95ca08df88374e38dec6244c2"
+  url "https://files.pythonhosted.org/packages/92/f6/988cdcf7a92a08e5edea0bcec6c6c0a8b847f35015f397230f5de731b583/tmt-1.37.0.tar.gz"
+  sha256 "82a4779c416b418ab21979bdb38b4c517fa58adbdb706f97f72e9fe7c6e2aed7"
   license "MIT"
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia:  "2f132fc82e50a6f2367e105d3adeb10e04bb4da14057015c2513405e710acb85"
-    sha256 cellar: :any,                 arm64_sonoma:   "3cc22ebcd73981c5c1fa228fc9079880d7fbac0e74fbaec91d0ffe928d7a3e40"
-    sha256 cellar: :any,                 arm64_ventura:  "e17e786afdb36ad5aa76ed5053fdd2e4dd6545b243e992e76b534beca3d4e7af"
-    sha256 cellar: :any,                 arm64_monterey: "48a4c58013928b22781e6a07c609b384ab0bdc0b3b4d0fd2eb6535feab2bd6c5"
-    sha256 cellar: :any,                 sonoma:         "6c0b127b7e4b326cc8904173753a7f4823b8f9dfea1ef2054e62f3e03c5e46be"
-    sha256 cellar: :any,                 ventura:        "8ad537afb6a87e57b354a67736e0d741c5068dc035439dc9afbef030f2ad4ee2"
-    sha256 cellar: :any,                 monterey:       "3a2218e0c7893dcbf1cf97179b3c2c29dec2a62a1c7a35043c07e9ac7371165d"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "78dad809a281cd63818ea0886994194694a2cb6a1584cbd949d03de823040f1a"
+    sha256 cellar: :any,                 arm64_sequoia: "d7411b7409d5f3860c670795862e0000efa96b21ecf02328ef81e572b5c98d84"
+    sha256 cellar: :any,                 arm64_sonoma:  "2d275cceeff240a48a5fdb48557f60d2a727c11fffeb15ac626a68b132292152"
+    sha256 cellar: :any,                 arm64_ventura: "be6d35430f52f0076f7bbabec2fe3efcecbd7506bfbc1d1b216fa9089aa35870"
+    sha256 cellar: :any,                 sonoma:        "9ae5b79497c35e99052d1e3088de8e423a788bb08dba4c07dfd2879382f078ae"
+    sha256 cellar: :any,                 ventura:       "ce55b0a71700d13c14ea2ac5ef8d1f527afd4db27612b1f67c0a5eb9eac1e14c"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5217427168b107563a22b5c31d6b9f25d999d769cdbf5fd0000ae29e1f549ca9"
   end
 
   depends_on "rust" => :build # for rpds-py
@@ -49,8 +47,8 @@ class Tmt < Formula
   end
 
   resource "filelock" do
-    url "https://files.pythonhosted.org/packages/08/dd/49e06f09b6645156550fb9aee9cc1e59aba7efbc972d665a1bd6ae0435d4/filelock-3.15.4.tar.gz"
-    sha256 "2207938cbc1844345cb01a5a95524dae30f0ce089eba5b00378295a17e3e90cb"
+    url "https://files.pythonhosted.org/packages/9d/db/3ef5bb276dae18d6ec2124224403d1d67bccdbefc17af4cc8f553e341ab1/filelock-3.16.1.tar.gz"
+    sha256 "c249fbfcd5db47e5e2d6d62198e565475ee65e4831e2561c8e313fa7eb961435"
   end
 
   resource "flexcache" do
@@ -66,13 +64,13 @@ class Tmt < Formula
   resource "fmf" do
     # No PyPI source, use git repo instead
     # https://github.com/teemtee/fmf/issues/224
-    url "https://github.com/teemtee/fmf/archive/refs/tags/1.3.0.tar.gz"
-    sha256 "85f84f591d9e577742f9d3d6ee6a05f7b03ae6ee8de4c60d2083c015e61f3699"
+    url "https://github.com/teemtee/fmf/archive/refs/tags/1.4.1.tar.gz"
+    sha256 "3a81da682f6d50f686420ff25e89bee339c2405639d15959ffac34df0dc75185"
   end
 
   resource "idna" do
-    url "https://files.pythonhosted.org/packages/e8/ac/e349c5e6d4543326c6883ee9491e3921e0d07b55fdf3cce184b40d63e72a/idna-3.8.tar.gz"
-    sha256 "d838c2c0ed6fced7693d5e8ab8e734d5f8fda53a039c0164afb0b82e771e3603"
+    url "https://files.pythonhosted.org/packages/f1/70/7703c29685631f5a7590aa73f1f1d3fa9a380e654b86af429e0934a32f7d/idna-3.10.tar.gz"
+    sha256 "12f65c9b470abda6dc35cf8e63cc574b1c52b11df2c86030af0ac09b01b13ea9"
   end
 
   resource "jinja2" do
@@ -141,8 +139,8 @@ class Tmt < Formula
   end
 
   resource "urllib3" do
-    url "https://files.pythonhosted.org/packages/43/6d/fa469ae21497ddc8bc93e5877702dca7cb8f911e337aca7452b5724f1bb6/urllib3-2.2.2.tar.gz"
-    sha256 "dd505485549a7a552833da5e6063639d0d177c04f23bc3864e41e5dc5f612168"
+    url "https://files.pythonhosted.org/packages/ed/63/22ba4ebfe7430b76388e7cd448d5478814d3032121827c12a2cc287e2260/urllib3-2.2.3.tar.gz"
+    sha256 "e7d814a81dad81e6caf2ec9fdedb284ecc9c73076b62654547cc64ccdcae26e9"
   end
 
   def install

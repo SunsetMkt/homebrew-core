@@ -1,8 +1,8 @@
 class Dolt < Formula
   desc "Git for Data"
   homepage "https://github.com/dolthub/dolt"
-  url "https://github.com/dolthub/dolt/archive/refs/tags/v1.42.19.tar.gz"
-  sha256 "b38b9b8ea72c2d14bf4d87ae43be37c895d00fb1aefa57d6800f447b58dbc19f"
+  url "https://github.com/dolthub/dolt/archive/refs/tags/v1.43.2.tar.gz"
+  sha256 "4496ba62ea83368f2e4eaa632e80288387ff27f174dd58badce453a71b54af7b"
   license "Apache-2.0"
 
   livecheck do
@@ -11,14 +11,12 @@ class Dolt < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia:  "cbd05750691db922661146c4f17682e0a16afe48e1f51619591169c86632360b"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "38da02904a3b82a85ac81bb1244f3c2caa5dc92c16be6c83dee24cb318230181"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "fc33744a2461764622b32438089f4df5dcb5b6992e899c9eb5c59052e350309b"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "5a51099f0b87b4196474aece908c0212488a7ee6ac2b37cc0c0dfae357525060"
-    sha256 cellar: :any_skip_relocation, sonoma:         "2c6ad15d431e9ea9755599105de018dbd973f6eaf5397b05fd3f642cb1c3a840"
-    sha256 cellar: :any_skip_relocation, ventura:        "133d83e8690f1a2fed1fd03aae20fbf421c61ae97d3d3e00df6ad2b764cea183"
-    sha256 cellar: :any_skip_relocation, monterey:       "3f66bc6fa93378d5f3e334f98890e16a848e09b7f8f682a27770a86d3fe0223d"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "ed829b45484f684681fc27bd63b052d485cd5ab5e7dd98714fdb5ca6048203c1"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "4607a6c7e439cbf118be3b35a040ff6ae3a7565c1e642076cca24e0a70bc787c"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "631caae6240cad80a21d13c16215dc700ff97315dbdea72b8f937773679b64fd"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "a76f9d6a3cd46fee9cbe13729f24a46462df5f054fc8b8116ed0658e5a6eb208"
+    sha256 cellar: :any_skip_relocation, sonoma:        "d9f3b593173ecba2d397937e38a5038cf513a46e635b17c78c0d43dcbe4346a0"
+    sha256 cellar: :any_skip_relocation, ventura:       "873d57ac7fbf9a1368bbaf51d440bd4c496e771f0b1037dd17294d9d0e0e8fad"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "594acf512c492fb2f0491d1c66d5c45ad0569418649364e53f61ef9fa9596cc5"
   end
 
   depends_on "go" => :build

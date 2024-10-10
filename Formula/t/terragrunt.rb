@@ -1,19 +1,17 @@
 class Terragrunt < Formula
   desc "Thin wrapper for Terraform e.g. for locking state"
   homepage "https://terragrunt.gruntwork.io/"
-  url "https://github.com/gruntwork-io/terragrunt/archive/refs/tags/v0.67.4.tar.gz"
-  sha256 "b144e620bc253bb84b76889a726bbe5dd0b5e648460a75e0043dc7dd2b4fc964"
+  url "https://github.com/gruntwork-io/terragrunt/archive/refs/tags/v0.68.1.tar.gz"
+  sha256 "a19743dde7c66e3ab3753bd48d75b4a2c8bed5a922a5c23bac75a177d4df21ba"
   license "MIT"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sequoia:  "4d8f3884b101c8564ea32b3071e1b6349100e1619287ddb688239956e043f9cf"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "4d8f3884b101c8564ea32b3071e1b6349100e1619287ddb688239956e043f9cf"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "4d8f3884b101c8564ea32b3071e1b6349100e1619287ddb688239956e043f9cf"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "4d8f3884b101c8564ea32b3071e1b6349100e1619287ddb688239956e043f9cf"
-    sha256 cellar: :any_skip_relocation, sonoma:         "d74bf12c450feed0d0cc30ea15b206fdc95b578b22d65eb29993ddd41d584428"
-    sha256 cellar: :any_skip_relocation, ventura:        "d74bf12c450feed0d0cc30ea15b206fdc95b578b22d65eb29993ddd41d584428"
-    sha256 cellar: :any_skip_relocation, monterey:       "d74bf12c450feed0d0cc30ea15b206fdc95b578b22d65eb29993ddd41d584428"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "189c9d870f19cd7216737ebd6e2db406bdaebb5c58291cfa39174d07bd8d310c"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "66915d1a2f42428182ba164e2aef4d0916be207f18caa1d5ebcf0e50a2531e2a"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "66915d1a2f42428182ba164e2aef4d0916be207f18caa1d5ebcf0e50a2531e2a"
+    sha256 cellar: :any_skip_relocation, arm64_ventura: "66915d1a2f42428182ba164e2aef4d0916be207f18caa1d5ebcf0e50a2531e2a"
+    sha256 cellar: :any_skip_relocation, sonoma:        "40453a897172cae2cce7df4db8d96c4a03114e54bed250fb90721ee216494070"
+    sha256 cellar: :any_skip_relocation, ventura:       "40453a897172cae2cce7df4db8d96c4a03114e54bed250fb90721ee216494070"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "7cd27dcd31eacca7f369dea1da7c8b30ebad998ad7bf8fb32fd737a293eb5df6"
   end
 
   depends_on "go" => :build

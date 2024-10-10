@@ -5,18 +5,16 @@ class ApacheArrow < Formula
   mirror "https://archive.apache.org/dist/arrow/arrow-17.0.0/apache-arrow-17.0.0.tar.gz"
   sha256 "9d280d8042e7cf526f8c28d170d93bfab65e50f94569f6a790982a878d8d898d"
   license "Apache-2.0"
-  revision 3
+  revision 8
   head "https://github.com/apache/arrow.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any,                 arm64_sequoia:  "b53b2634707f8a0da1d06e5f6773a4f8710e983533a853aacb15062a99cea83b"
-    sha256 cellar: :any,                 arm64_sonoma:   "f15a4bc0a20f958e47c9a1477f73dfabe79fdabf30d6b89deb528ed733f235ad"
-    sha256 cellar: :any,                 arm64_ventura:  "881e742f08c48512d08ccadbcd870f99919cbfa427ed69b4a08d829ee00859a9"
-    sha256 cellar: :any,                 arm64_monterey: "8265f26c270d968665488884b6b5aa3adcacf6df93729dde6ba098441a66c9ff"
-    sha256 cellar: :any,                 sonoma:         "ff50f0f8fcfc8dcc858a5b0d703f834eb8522736bb80eab15b5157f7b4342e9e"
-    sha256 cellar: :any,                 ventura:        "099d1fac50d1c7baec433da4f7f0a99a52293dc487b78174ee10cb5f07cdc299"
-    sha256 cellar: :any,                 monterey:       "3eb753cb5351d6d8c5208251c61531f0c50db20b80ac28631e3793d50c21fcff"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "5832c181b8dd8dad13e6e3fcc3ec245201cf4cb13616be8f0f99192b11474a6e"
+    sha256 cellar: :any,                 arm64_sequoia: "2fc6008982d88365d2a0ca4465f00130b40dd2fd79f0df172c5ae93f759e42e2"
+    sha256 cellar: :any,                 arm64_sonoma:  "1d2fcbae3434a44040708720517351b884b96975ec9a91e123f904de0a5579fa"
+    sha256 cellar: :any,                 arm64_ventura: "b35302f7cb3518093962e5f62dc96c07c57b245e8dc17e441de519a15c82f4ac"
+    sha256 cellar: :any,                 sonoma:        "ea36e30752a599b4a7eb00ac6289c26b6c7af7511b9291385edf9436cfa81522"
+    sha256 cellar: :any,                 ventura:       "7826c2dbec52f2437f02bae7fc4e7400947fd9d0ae9ed0d821523af91d5d5c9c"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "e785e61f8af34a802197e17c8a75cf5199cf88c8919d9b02e5edca22f57e3dea"
   end
 
   depends_on "boost" => :build
@@ -29,7 +27,7 @@ class ApacheArrow < Formula
   depends_on "c-ares"
   depends_on "glog"
   depends_on "grpc"
-  depends_on "llvm"
+  depends_on "llvm@18"
   depends_on "lz4"
   depends_on "openssl@3"
   depends_on "protobuf"
@@ -45,11 +43,15 @@ class ApacheArrow < Formula
 
   fails_with gcc: "5"
 
+  def llvm
+    deps.map(&:to_formula).find { |f| f.name.match?(/^llvm(@\d+)?$/) }
+  end
+
   def install
     # Work around an Xcode 15 linker issue which causes linkage against LLVM's
     # libunwind due to it being present in a library search path.
-    llvm = Formula["llvm"]
     ENV.remove "HOMEBREW_LIBRARY_PATHS", llvm.opt_lib if DevelopmentTools.clang_build_version >= 1500
+    ENV.append "LDFLAGS", "-Wl,-rpath,#{llvm.opt_lib}" if OS.linux?
 
     # We set `ARROW_ORC=OFF` because it fails to build with Protobuf 27.0
     args = %W[
